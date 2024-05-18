@@ -11,7 +11,7 @@
 ---
 
 ## 🗂 ERD
-
+![erd](https://github.com/dongcarry96/reservation-market/assets/103975117/195b8f55-bfcf-4a9c-896b-cc5fcc3a65a4)
 ---
 
 ## 📚 API 문서
