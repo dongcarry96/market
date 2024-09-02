@@ -25,9 +25,20 @@
 
 ---
 
-## 🛠 기술 스택
+## 🛠 기술 스택 
 <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"><img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"><img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"><img src="https://img.shields.io/badge/Apache Kafka-%3333333.svg?style=for-the-badge&logo=Apache Kafka&logoColor=white"><img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=Redis&logoColor=white"><img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white">
 
+Language: Java 21
+Framework: Spring boot 3.2.4
+Build: Gradle 8.7
+Database: MySQL 8.3
+Container: Docker
+
+### 특징
+- Spring Security 및 JWT를 활용한 사용자 인증 및 인가
+- Spring Cloud 및 Netflix Eureka를 활용한 마이크로서비스 아키텍처
+- Redis를 이용한 동시성 처리
+- 
 
 ### 🖥 Backend
 
@@ -41,10 +52,203 @@
 
   ---
 
-  ### 성능 최적화 사례
-- 작성예정
+  ### 폴더 구조
 
-  ### 트러블슈팅 경험
-- 작성예정
-  
-  ---
+``` sh
+api-gateway
+ ┣ src
+ ┃ ┣ main
+ ┃ ┃ ┣ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ apigateway
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ filter
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ AuthorizationHeaderFilter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ CustomFilter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ GlobalFilter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ LoggingFilter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ApiGatewayApplication.java
+ ┃ ┃ ┗ resources
+ ┃ ┃ ┃ ┗ application.yml
+ ┃ ┗ test
+ ┃ ┃ ┗ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ apigateway
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ MartApiGatewayApplicationTests.java
+eureka-server
+ ┣ src
+ ┃ ┣ main
+ ┃ ┃ ┣ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ eurekaserver
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ EurekaServerApplication.java
+ ┃ ┃ ┗ resources
+ ┃ ┃ ┃ ┗ application.yml
+ ┃ ┗ test
+ ┃ ┃ ┗ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ eurekaserver
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ MartEurekaServerApplicationTests.java
+order-service
+ ┣ src
+ ┃ ┣ main
+ ┃ ┃ ┣ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ orderservice
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ OrderController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ KafkaOrderCancelDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ KafkaOrderDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ KafkaOrderReturnDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ OrderDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ SearchOrderDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ OrderEntity.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ OrderStatus.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ messagequeue
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ KafkaProducer.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ KafkaProducerConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ OrderRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ OrderService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ OrderServiceImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ OrderServiceApplication.java
+ ┃ ┃ ┗ resources
+ ┃ ┃ ┃ ┗ application.yml
+ ┃ ┗ test
+ ┃ ┃ ┗ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ orderservice
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ MartOrderServiceApplicationTests.java
+product-service
+ ┣ src
+ ┃ ┣ main
+ ┃ ┃ ┣ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ productservice
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ cofig
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ScheduleConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ProductController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ KafkaProductDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ProductDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ ProductEntity.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ProductStatus.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ messagequeue
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ KafkaConsumer.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ KafkaConsumerConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ KafkaProducer.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ KafkaProducerConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ProductRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ ProductService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ProductServiceImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ vo
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ RequestProduct.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ResponseProduct.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ProductServiceApplication.java
+ ┃ ┃ ┗ resources
+ ┃ ┃ ┃ ┣ application.yml
+ ┃ ┃ ┃ ┗ data.sql
+ ┃ ┗ test
+ ┃ ┃ ┗ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ productservice
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ MartProductServiceApplicationTests.java
+stock-service
+ ┣ src
+ ┃ ┣ main
+ ┃ ┃ ┣ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ stockservice
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ config
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ RedisConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ StockDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ StockEntity.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ messagequeue
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ KafkaConsumer.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ KafkaConsumerConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ redis
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ StockRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ RedisService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ vo
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ CreateStock.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ StockServiceApplication.java
+ ┃ ┃ ┗ resources
+ ┃ ┃ ┃ ┗ application.yml
+ ┃ ┗ test
+ ┃ ┃ ┗ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ stockservice
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ MartStockServiceApplicationTests.java
+user-service
+ ┣ src
+ ┃ ┣ main
+ ┃ ┃ ┣ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ userservice
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ domain
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ client
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ OrderServiceClient.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ProductServiceClient.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ controller
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ UserController.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ dto
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ UserDto.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ entity
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ UserEntity.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ repository
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ UserRepository.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ service
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ UserService.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ UserServiceImpl.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ vo
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ RequestLogin.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ RequestUser.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ ResponseOrder.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ ResponseProduct.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ ResponseUser.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ global
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ config
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ AES256Util.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ error
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ FeignErrorDecoder.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ FeignErrorDecoder2.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ redis
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ RedisConfig.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ RedisUtil.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ security
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ AuthenticationFilter.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ WebSecurityNew.java
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ UserServiceApplication.java
+ ┃ ┃ ┗ resources
+ ┃ ┃ ┃ ┗ application.yml
+ ┃ ┗ test
+ ┃ ┃ ┗ java
+ ┃ ┃ ┃ ┗ com
+ ┃ ┃ ┃ ┃ ┗ example
+ ┃ ┃ ┃ ┃ ┃ ┗ userservice
+ ┃ ┃ ┃ ┃ ┃ ┃ ┗ MartUserServiceApplicationTests.java
+---
+
+<br>
+
