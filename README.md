@@ -52,7 +52,7 @@ Container: Docker
 
   ---
 
-  ### 폴더 구조
+  ### 📁 폴더 구조
 
 ``` sh
 api-gateway
@@ -248,7 +248,4 @@ user-service
  ┃ ┃ ┃ ┃ ┗ example
  ┃ ┃ ┃ ┃ ┃ ┗ userservice
  ┃ ┃ ┃ ┃ ┃ ┃ ┗ MartUserServiceApplicationTests.java
----
-
-<br>
-
+```
