@@ -45,6 +45,8 @@
 
 ## 📚 API 문서
 
+https://dong-2.gitbook.io/api
+
 ---
 
 ## 🧩 서비스 아키텍처
