@@ -51,6 +51,8 @@ https://dong-2.gitbook.io/api
 
 ## 🧩 서비스 아키텍처
 
+![아키텍처_MARKET](https://github.com/user-attachments/assets/8a59ce0e-abce-4ddf-b361-e0156321b28a)
+
 ---
 
 ## 🗂 ERD
