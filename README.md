@@ -54,7 +54,7 @@ https://dong-2.gitbook.io/api
 ---
 
 ## 🗂 ERD
-![erd](https://github.com/dongcarry96/reservation-market/assets/103975117/195b8f55-bfcf-4a9c-896b-cc5fcc3a65a4)
+![market_erd](https://github.com/user-attachments/assets/1a38fb2d-69f8-4a56-9c69-c4c7f00863b2)
 
 ---
 
