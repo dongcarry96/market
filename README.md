@@ -54,7 +54,7 @@ https://dong-2.gitbook.io/api
 ---
 
 ## 🗂 ERD
-![market_erd](https://github.com/user-attachments/assets/1a38fb2d-69f8-4a56-9c69-c4c7f00863b2)
+![market_erd](https://github.com/user-attachments/assets/ad8f8cf2-c80e-4ae5-8ea3-01d71b3728f4)
 
 ---
 
